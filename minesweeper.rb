@@ -11,6 +11,9 @@ class Board
         @input = input
       end
 
+      def visit(value, x, y)
+      end
+
       def in_range?(x, y)
         x >= 0 && x < width && y >= 0 && y < height
       end
@@ -31,6 +34,7 @@ class Board
       end
 
       def visit(value, x, y)
+        super value, x, y
         pos = "[#{x}, #{y}]"
         if y == 0 || y == height-1
           if x == 0 || x == width-1
@@ -57,6 +61,7 @@ class Board
       end
 
       def visit(value, x, y)
+        super value, x, y
         @output << '' if x == 0
         processed_row = @output.last
         if value == ' '
