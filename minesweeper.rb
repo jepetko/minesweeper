@@ -84,7 +84,6 @@ class Board
   class BoardParser
 
     attr_reader :input
-    attr_reader :cell_visitors
 
     def initialize(input)
       @input = input
@@ -102,7 +101,7 @@ class Board
 
     def check_width
       return if !input || input.empty?
-      length = input[0].length
+      length = input.first.length
       input.each { |el| raise ValueError.new('invalid board') if el.length != length }
     end
 
