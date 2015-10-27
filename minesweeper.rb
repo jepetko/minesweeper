@@ -35,18 +35,17 @@ class Board
 
       def visit(value, x, y)
         super value, x, y
-        pos = "[#{x}, #{y}]"
         if y == 0 || y == height-1
           if x == 0 || x == width-1
-            raise ValueError.new("+ expected on position #{pos}") if value != '+'
+            raise ValueError.new if value != '+'
           elsif x > 0 && x < width-1
-            raise ValueError.new("- expected on position #{pos}") if value != '-'
+            raise ValueError.new if value != '-'
           end
         else
           if x == 0 || x == width-1
-            raise ValueError.new("| expected on position #{pos}") if value != '|'
+            raise ValueError.new if value != '|'
           else
-            raise ValueError.new("#{value} not expected on position #{pos}") if value != ' ' && value != '*'
+            raise ValueError.new if value != ' ' && value != '*'
           end
         end
       end
@@ -108,7 +107,7 @@ class Board
     def check_width
       return if !input || input.empty?
       length = input.first.length
-      input.each { |el| raise ValueError.new('invalid board') if el.length != length }
+      input.each { |el| raise ValueError.new if el.length != length }
     end
 
     def parse_rows
